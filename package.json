@@ -5,8 +5,9 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@cloudscape-design/code-view": "^3.0.18",
     "@cloudscape-design/collection-hooks": "^1.0.0",
-    "@cloudscape-design/components": "^3.0.0",
+    "@cloudscape-design/components": "^3.0.675",
     "@cloudscape-design/design-tokens": "^3.0.0",
     "@cloudscape-design/global-styles": "^1.0.0",
     "react": "^18.0.0",
