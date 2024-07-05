@@ -13,6 +13,7 @@ export default function Navigation() {
           items: [
             { type: "link", text: "Child page 4", href: "#/page1/page4" },
             { type: "link", text: "Child page 5", href: "#/page1/page5" },
+            { type: "link", text: "Child page 6", href: "#/page1/page6" },
           ]
         },
         { type: "link", text: "Page 2", href: "#/page2" },

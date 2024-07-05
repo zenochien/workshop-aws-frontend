@@ -6,7 +6,6 @@ export default function Page({ setContentHeader }) {
     setContentHeader(
       <Header variant="h1">
         Hello from Page 2
-
       </Header>
     );
   }, [setContentHeader]);

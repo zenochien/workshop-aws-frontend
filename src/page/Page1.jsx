@@ -2,7 +2,6 @@ import { Container, Header } from "@cloudscape-design/components";
 import { useEffect } from "react";
 import Button from "@cloudscape-design/components/button";
 import ContentLayout from "@cloudscape-design/components/content-layout";
-import Link from "@cloudscape-design/components/link";
 import Box from "@cloudscape-design/components/box";
 
 export default function Page1({ setContentHeader }) {
@@ -25,29 +24,31 @@ export default function Page1({ setContentHeader }) {
           Content heading
         </Box>
 
-        <Box variant="p">This is a content paragraph.</Box>
-      </ContentLayout>
+        <Box variant="p">
+          Chào bạn, hôm nay bạn như thế nào khi đi chơi?
+        </Box>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '30px' }}>
-        <Button
-          ariaExpanded
-          href="#/page1"
-          iconName="arrow-left"
-          wrapText={false}
-          style={{ marginRight: '30px' }}
-        >
-          Previous
-        </Button>
-        <Button
-          ariaExpanded
-          href="#/page3"
-          iconAlign="right"
-          iconName="arrow-right"
-          wrapText={false}
-        >
-          Next
-        </Button>
-      </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginTop: '30px' }}>
+          <Button
+            ariaExpanded
+            href="#/page1"
+            iconName="arrow-left"
+            wrapText={false}
+            style={{ marginRight: '30px' }}
+          >
+            Previous
+          </Button>
+          <Button
+            ariaExpanded
+            href="#/page1/page5"
+            iconAlign="right"
+            iconName="arrow-right"
+            wrapText={false}
+          >
+            Next
+          </Button>
+        </div>
+      </ContentLayout>
     </>
   );
 }
