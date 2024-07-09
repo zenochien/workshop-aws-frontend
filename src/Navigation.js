@@ -18,6 +18,9 @@ export default function Navigation() {
         },
         { type: "link", text: "Page 2", href: "#/page2" },
         { type: "link", text: "Page 3", href: "#/page3" },
+        { type: "link", text: "Page 7", href: "#/page7" },
+        { type: "link", text: "Page 8", href: "#/page8" },
+
         { type: "divider" },
         {
           type: "link",

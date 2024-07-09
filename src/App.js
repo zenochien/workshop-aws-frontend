@@ -7,7 +7,9 @@ import Page2 from "./page/Page2";
 import Page3 from "./page/Page3";
 import Page4 from "./page/page1/Page4";
 import Page5 from "./page/page1/Page5";
-import Page6 from "./page/page1/Page6"
+import Page6 from "./page/page1/Page6";
+import Page7 from "./page/page7";
+import Page8 from "./page/page8";
 import "@cloudscape-design/global-styles/index.css";
 
 export default function App() {
@@ -59,6 +61,16 @@ export default function App() {
           { text: 'Home', href: '/' },
           { text: 'Page 5', href: '/page5' }
         ];
+      case "/page7":
+        return [
+          { text: 'Home', href: '/' },
+          { text: 'Sigin up and sigin in', href: '/page7' }
+        ];
+      case "/page7":
+        return [
+          { text: 'Home', href: '/' },
+          { text: 'Upload', href: '/page8' }
+        ];
       default:
         return [{ text: 'Home', href: '/' }];
     }
@@ -96,6 +108,8 @@ export default function App() {
               <Route path="/page1/page6" element={<Page6 setContentHeader={setContentHeader} />} />
               <Route path="/page2" element={<Page2 setContentHeader={setContentHeader} />} />
               <Route path="/page3" element={<Page3 setContentHeader={setContentHeader} />} />
+              <Route path="/page7" element={<Page7 setContentHeader={setContentHeader} />} />
+              <Route path="/page8" element={<Page8 setContentHeader={setContentHeader} />} />
               <Route exact path="/" element={<Navigate to="/page1" />} />
             </Routes>
           </>

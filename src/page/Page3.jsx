@@ -1,46 +1,72 @@
-import { Container, Header, Alert, Button } from "@cloudscape-design/components";
-import { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import { Container, Header, Alert, Button, Input } from '@cloudscape-design/components';
 
 export default function Page3({ setContentHeader }) {
   useEffect(() => {
     setContentHeader(<Header variant="h1">Hello from Page 3</Header>);
-  });
+  }, [setContentHeader]);
+
+  const [alert, setAlert] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.detail.value);
+  };
+
+  const validateInput = () => {
+    const specialCharPattern = /[!@#$%&^*]/;
+    if (specialCharPattern.test(inputValue)) {
+      showErrorAlert();
+    } else {
+      showSuccessAlert();
+    }
+  };
+
+  const showSuccessAlert = () => {
+    setAlert({
+      type: 'success',
+      header: 'Thành công',
+      content: 'Bạn đã nhập đúng',
+      statusIconAriaLabel: 'Success'
+    });
+  };
+
+  const showErrorAlert = () => {
+    setAlert({
+      type: 'error',
+      header: 'Thất bại',
+      content: 'Bạn nhập sai !@#$%&^*',
+      statusIconAriaLabel: 'Error'
+    });
+  };
 
   return (
     <>
+      <div style={{ marginTop: "20px" }}>
+        {alert && (
+          <Alert
+            type={alert.type}
+            header={alert.header}
+            statusIconAriaLabel={alert.statusIconAriaLabel}
+            dismissible
+            onDismiss={() => setAlert(null)}
+          >
+            {alert.content}
+          </Alert>
+        )}
+      </div>
+
+
       <div style={{ marginTop: '20px', display: 'grid', gap: '20%' }}>
-        <Alert statusIconAriaLabel="Warning" type="warning">
-          Changing the configuration might require stopping
-          the instance.
-        </Alert>
+        <Input
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="Nhập chữ abc, không tự ký đặc biệt"
+        />
+        <Button onClick={validateInput}>Kiểm tra và báo lỗi !@#$%&^*</Button>
 
-        <Alert
-          statusIconAriaLabel="Info"
-          header="Known issues/limitations"
-        >
-          Review the documentation to learn about potential
-          compatibility issues with specific database
-          versions.
-        </Alert>
-        <Alert
-          dismissible
-          statusIconAriaLabel="Success"
-          type="success"
-        >
-          Your instance has been created successfully.
-        </Alert>
 
-        <Alert
-          statusIconAriaLabel="Info"
-          action={<Button>Enable versioning</Button>}
-          header="Versioning is not enabled"
-        >
-          Versioning is not enabled for objects in bucket
-          [IAM-user].
-        </Alert>
-      </div >
-
+      </div>
     </>
-
   );
 }
