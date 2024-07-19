@@ -10,3 +10,11 @@
     padding: 10px;
     background-color: gray;
 }
+
+.hidden-button {
+    display: none;
+}
+
+.hidden-button.hidden {
+    display: block;
+}

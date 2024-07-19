@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Header, Alert, Button, FileUpload, FormField } from "@cloudscape-design/components";
 
-export default function Page8({ setContentHeader }) {
+export default function UploadAndDownmload({ setContentHeader }) {
     useEffect(() => {
         setContentHeader(<Header variant="h1">File Upload</Header>);
     }, [setContentHeader]);
@@ -12,12 +12,12 @@ export default function Page8({ setContentHeader }) {
 
     const handleFileChange = ({ detail }) => {
         const selectedFiles = detail.value;
-        const maxFileSize = 30 * 1024 * 1024; // 30 MB
+        const maxFileSize = 3 * 1024 * 1024; // 3 MB
         const fileWarnings = [];
 
         selectedFiles.forEach(file => {
             if (file.size > maxFileSize) {
-                fileWarnings.push(`${file.name} exceeds 2MB and cannot be uploaded`);
+                fileWarnings.push(`${file.name} exceeds 3MB and cannot be uploaded`);
             }
         });
 
@@ -114,13 +114,13 @@ export default function Page8({ setContentHeader }) {
             <div style={{ marginTop: '20px', display: 'grid', gap: '20%' }}>
                 <FormField
                     label="File Upload"
-                    description="Upload files. Max size per file: 2MB."
+                    description="Upload files. Max size per file: 3MB."
                 >
                     <FileUpload
                         onChange={handleFileChange}
                         value={files}
                         ariaRequired
-                        fileWarnings={files.length > 0 && files[0].size > 30 * 1024 * 1024 ? ["This is a warning message related to this file"] : []} // Warning max size 30 MB
+                        fileWarnings={files.length > 0 && files[0].size > 3 * 1024 * 1024 ? ["This is a warning message related to this file"] : []} // Warning max size 30 MB
                         i18nStrings={{
                             uploadButtonText: e => e ? "Choose files" : "Choose file",
                             dropzoneText: e => e ? "Drop files to upload" : "Drop file to upload",

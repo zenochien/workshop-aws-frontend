@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Header, Alert, Button, Input } from '@cloudscape-design/components';
 
-export default function Page7({ setContentHeader }) {
+export default function SignInUp({ setContentHeader }) {
     useEffect(() => {
-        setContentHeader(<Header variant="h1">Hello from Page 3</Header>);
+        setContentHeader(<Header variant="h1">Sign In and Sign Up</Header>);
     }, [setContentHeader]);
 
     const [alert, setAlert] = useState(null);

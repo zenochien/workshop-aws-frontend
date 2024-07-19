@@ -1,75 +1,93 @@
 import { useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { AppLayout, BreadcrumbGroup, ContentLayout, Header, Link } from "@cloudscape-design/components";
+import { AppLayout, BreadcrumbGroup, ContentLayout, Header, Button, Container } from "@cloudscape-design/components";
 import Navigation from "./Navigation";
-import Page1 from "./page/Page1";
-import Page2 from "./page/Page2";
-import Page3 from "./page/Page3";
-import Page4 from "./page/page1/Page4";
-import Page5 from "./page/page1/Page5";
-import Page6 from "./page/page1/Page6";
-import Page7 from "./page/page7";
-import Page8 from "./page/page8";
 import "@cloudscape-design/global-styles/index.css";
+import Home from "./page/home"
+import { Contentdashboard } from "./events/contentdashboard";
+import CustomHomeHeader from "./page/CustomHomeHeader/CustomHomeHeader";
+import CheckText from "./page/checktext";
+import SignInUp from "./page/signinup";
+import UploadAndDownmload from "./page/uploaddownload";
+import DataTable from "./page/datatable";
+import CreateS3 from "./page/creates3";
+import RunS3 from "./page/runs3";
 
 export default function App() {
   const [contentHeader, setContentHeader] = useState(null);
+  const [isNavigationOpen, setIsNavigationOpen] = useState(true);
+  const [isToolsHidden, setIsToolsHidden] = useState(true);
   const location = useLocation();
 
   const getBreadcrumbItems = () => {
     switch (location.pathname) {
-      case "/page1":
+      case "/home":
         return [
           { text: 'Home', href: '/' },
-          { text: 'Page 1', href: '/page1' },
+          { text: 'Home', href: '/home' },
         ];
-      case "/page1/page4":
+      // case "/home/page4":
+      //   return [
+      //     { text: 'Home', href: '/' },
+      //     { text: 'Home', href: '/home' },
+      //     { text: 'Page 4', href: '/home/page4' }
+      //   ];
+      // case "/home/page5":
+      //   return [
+      //     { text: 'Home', href: '/' },
+      //     { text: 'Home', href: '/home' },
+      //     { text: 'Page 5', href: '/home/page5' }
+      //   ];
+      // case "/home/page6":
+      // return [
+      //   { text: 'Home', href: '/' },
+      //   { text: 'Home', href: '/home' },
+      //   { text: 'Page 6', href: '/home/page6' }
+      // ];
+      // case "/page2":
+      //   return [
+      //     { text: 'Home', href: '/' },
+      //     { text: 'Service', href: '/page2' }
+      //   ];
+      case "/checktext":
         return [
           { text: 'Home', href: '/' },
-          { text: 'Page 1', href: '/page1' },
-          { text: 'Page 4', href: '/page1/page4' }
+          { text: 'Check Text', href: '/checktext' }
         ];
-      case "/page1/page5":
-        return [
-          { text: 'Home', href: '/' },
-          { text: 'Page 1', href: '/page1' },
-          { text: 'Page 5', href: '/page1/page5' }
-        ];
-      case "/page1/page6":
-        return [
-          { text: 'Home', href: '/' },
-          { text: 'Page 1', href: '/page1' },
-          { text: 'Page 6', href: '/page1/page6' }
-        ];
-      case "/page2":
-        return [
-          { text: 'Home', href: '/' },
-          { text: 'Service', href: '/page2' }
-        ];
-      case "/page3":
-        return [
-          { text: 'Home', href: '/' },
-          { text: 'Container', href: '/page3' }
-        ];
-      case "/page4":
-        return [
-          { text: 'Home', href: '/' },
-          { text: 'Page 4', href: '/page4' }
-        ];
-      case "/page5":
+
         return [
           { text: 'Home', href: '/' },
           { text: 'Page 5', href: '/page5' }
         ];
-      case "/page7":
+      case "/signinup":
         return [
           { text: 'Home', href: '/' },
-          { text: 'Sigin up and sigin in', href: '/page7' }
+          { text: 'Sigin up and sigin in', href: '/signinup' }
         ];
-      case "/page7":
+      case "/uploaddownload":
         return [
           { text: 'Home', href: '/' },
-          { text: 'Upload', href: '/page8' }
+          { text: 'File Updata and Download', href: '/uploaddownload' }
+        ];
+      case "/datatable":
+        return [
+          { text: 'Home', href: '/' },
+          { text: 'Data with Table', href: '/datatable' }
+        ];
+      case "/creates3":
+        return [
+          { text: 'Home', href: '/' },
+          { text: 'Create S3', href: '/create s3' }
+        ];
+      case "/runs3":
+        return [
+          { text: 'Home', href: '/' },
+          { text: 'Run S3', href: '/runs3' }
+        ];
+      case "/events/content-daskboard":
+        return [
+          { text: 'Home', href: '/' },
+          { text: 'Dashboard Content', href: '/events/contentdashboard' }
         ];
       default:
         return [{ text: 'Home', href: '/' }];
@@ -78,39 +96,29 @@ export default function App() {
 
   return (
     <>
-      <ContentLayout
-        defaultPadding
-        headerVariant="high-contrast"
-        header={
-          <Header
-            variant="h1"
-            info={<Link variant="info">Info</Link>}
-            description="This is a generic description used in the header."
-          >
-            Header
-          </Header>
-        }
-      >
-      </ContentLayout>
+
 
       <AppLayout
-        navigationOpen={true}
-        toolsHide={true}
+        navigationOpen={isNavigationOpen}
+        toolsHide={isToolsHidden}
+        onNavigationChange={() => setIsNavigationOpen(!isNavigationOpen)}
+        onToolsChange={() => setIsToolsHidden(!isToolsHidden)}
         navigation={<Navigation />}
-        contentHeader={contentHeader}
+        contentHeader={<CustomHomeHeader />}
         content={
           <>
             <BreadcrumbGroup items={getBreadcrumbItems()} />
             <Routes>
-              <Route path="/page1" element={<Page1 setContentHeader={setContentHeader} />} />
-              <Route path="/page1/page4" element={<Page4 setContentHeader={setContentHeader} />} />
-              <Route path="/page1/page5" element={<Page5 setContentHeader={setContentHeader} />} />
-              <Route path="/page1/page6" element={<Page6 setContentHeader={setContentHeader} />} />
-              <Route path="/page2" element={<Page2 setContentHeader={setContentHeader} />} />
-              <Route path="/page3" element={<Page3 setContentHeader={setContentHeader} />} />
-              <Route path="/page7" element={<Page7 setContentHeader={setContentHeader} />} />
-              <Route path="/page8" element={<Page8 setContentHeader={setContentHeader} />} />
-              <Route exact path="/" element={<Navigate to="/page1" />} />
+              <Route path="/home" element={<Home setContentHeader={setContentHeader} />} />
+              <Route path="/checktext" element={<CheckText setContentHeader={setContentHeader} />} />
+              <Route path="/signinup" element={<SignInUp setContentHeader={setContentHeader} />} />
+              <Route path="/uploaddownload" element={<UploadAndDownmload setContentHeader={setContentHeader} />} />
+              <Route path="/datatable" element={<DataTable setContentHeader={setContentHeader} />} />
+              <Route path="/creates3" element={<CreateS3 setContentHeader={setContentHeader} />} />
+              <Route path="/runs3" element={<RunS3 setContentHeader={setContentHeader} />} />
+              <Route path="/events/contentdashboard" element={<Contentdashboard setContentHeader={setContentHeader} />} />
+
+              <Route exact path="/" element={<Navigate to="/home" />} />
             </Routes>
           </>
         }
